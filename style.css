@@ -1,0 +1,605 @@
+/* ==========================================================================
+   Body Scent — style.css
+   ธีมพรีเมียม เรียบหรู มินิมอล (ขาว-ครีม-เบจเข้ม + สีเน้นทอง/บรอนซ์อ่อน)
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+Thai:wght@300;400;500&family=IBM+Plex+Sans+Thai:wght@300;400;500&display=swap");
+
+/* --------------------------------------------------------------------------
+   1. Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* พื้นหลัง */
+  --c-white: #fdfcfa;
+  --c-cream: #f6f1e8;
+  --c-sand: #ebe3d5;
+
+  /* ตัวอักษร / เส้น */
+  --c-ink: #3a322b;          /* น้ำตาลเข้มนุ่มตา แทนสีดำ */
+  --c-ink-soft: #6f655a;
+  --c-line: #cfc4b3;
+  --c-line-strong: #3a322b;
+
+  /* สีเน้น ทอง/บรอนซ์อ่อน */
+  --c-accent: #a8855a;
+  --c-accent-deep: #8a6b43;
+
+  /* สีประจำ mood (ใช้เป็นจุดเล็กๆ เท่านั้น) */
+  --mood-fresh: #3f6b52;
+  --mood-sweet: #8a6aa8;
+  --mood-confident: #3f5364;
+  --mood-romance: #c47a7a;
+
+  /* ฟอนต์ */
+  --font-display: "Cormorant Garamond", "Noto Serif Thai", Georgia, serif;
+  --font-serif-th: "Noto Serif Thai", "Cormorant Garamond", Georgia, serif;
+  --font-body: "IBM Plex Sans Thai", "Helvetica Neue", Arial, sans-serif;
+
+  /* สเกลตัวอักษร */
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  --fs-2xl: clamp(2rem, 1.4rem + 2.2vw, 3.25rem);
+  --fs-hero: clamp(2.5rem, 1.6rem + 4.4vw, 5rem);
+
+  /* ระยะห่าง */
+  --s-1: 0.5rem;
+  --s-2: 1rem;
+  --s-3: 1.5rem;
+  --s-4: 2.5rem;
+  --s-5: 4rem;
+  --s-6: 6rem;
+  --s-7: 9rem;
+
+  --container: 72rem;
+  --radius: 2px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--c-white);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: 300;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 var(--s-2);
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+h1 { font-size: var(--fs-hero); font-weight: 400; line-height: 1.15; }
+h2 { font-size: var(--fs-2xl); }
+h3 { font-size: var(--fs-xl); }
+h4 { font-size: var(--fs-lg); }
+
+p {
+  margin: 0 0 var(--s-2);
+  max-width: 38rem;
+  color: var(--c-ink-soft);
+}
+
+::selection {
+  background: var(--c-sand);
+  color: var(--c-ink);
+}
+
+:focus-visible {
+  outline: 1px solid var(--c-accent-deep);
+  outline-offset: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--s-3);
+}
+
+.section {
+  padding-block: var(--s-6);
+}
+
+.section--cream {
+  background: var(--c-cream);
+}
+
+.section--sand {
+  background: var(--c-sand);
+}
+
+.section__head {
+  margin-bottom: var(--s-5);
+}
+
+.section__head--center {
+  text-align: center;
+}
+
+.section__head--center p {
+  margin-inline: auto;
+}
+
+.divider {
+  width: 3rem;
+  height: 1px;
+  margin: var(--s-3) 0;
+  border: 0;
+  background: var(--c-accent);
+}
+
+.section__head--center .divider {
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   4. Header / Navigation
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(253, 252, 250, 0.94);
+  border-bottom: 1px solid var(--c-line);
+  backdrop-filter: blur(6px);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.5rem;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.nav {
+  display: flex;
+  gap: var(--s-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  position: relative;
+  padding-block: var(--s-1);
+  font-size: var(--fs-sm);
+  color: var(--c-ink-soft);
+  transition: color 0.3s var(--ease);
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--c-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: var(--c-ink);
+}
+
+.nav a:hover::after,
+.nav a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  padding-block: var(--s-7) var(--s-6);
+  background: linear-gradient(to bottom, var(--c-cream), var(--c-white));
+}
+
+.hero__inner {
+  max-width: 46rem;
+}
+
+.hero h1 {
+  margin-bottom: var(--s-3);
+}
+
+.hero p {
+  margin-bottom: var(--s-4);
+  font-family: var(--font-serif-th);
+  font-size: var(--fs-lg);
+  line-height: 1.9;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+/* --------------------------------------------------------------------------
+   6. Buttons (เส้นบาง ไม่ฉูดฉาด)
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2.25rem;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+
+.btn:hover {
+  background: var(--c-ink);
+  color: var(--c-white);
+}
+
+.btn--solid {
+  background: var(--c-ink);
+  color: var(--c-white);
+}
+
+.btn--solid:hover {
+  background: var(--c-accent-deep);
+  border-color: var(--c-accent-deep);
+}
+
+.btn--ghost {
+  border-color: var(--c-line);
+}
+
+.btn--ghost:hover {
+  border-color: var(--c-ink);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   7. Mood — สีแตะเบาๆ เป็นจุด/เส้นเล็กๆ เท่านั้น
+   ใช้ data-mood="fresh|sweet|confident|romance" กับ element ใดก็ได้
+   -------------------------------------------------------------------------- */
+[data-mood="fresh"]     { --mood: var(--mood-fresh); }
+[data-mood="sweet"]     { --mood: var(--mood-sweet); }
+[data-mood="confident"] { --mood: var(--mood-confident); }
+[data-mood="romance"]   { --mood: var(--mood-romance); }
+
+/* จุดสีเล็กๆ */
+.mood-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.6rem;
+  border-radius: 50%;
+  background: var(--mood, var(--c-accent));
+  vertical-align: middle;
+}
+
+/* เส้นสั้นใต้หัวข้อ */
+.mood-title {
+  position: relative;
+  padding-bottom: var(--s-2);
+  margin-bottom: var(--s-2);
+}
+
+.mood-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2rem;
+  height: 2px;
+  background: var(--mood, var(--c-accent));
+}
+
+/* การ์ด mood — พื้นหลังเดิม ไม่ลงสีเต็มการ์ด */
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-4);
+}
+
+.mood-card {
+  padding: var(--s-4) var(--s-3) var(--s-4) 0;
+  border-top: 1px solid var(--c-line);
+}
+
+.mood-card h3 {
+  font-size: 1.5rem;
+}
+
+.mood-card p {
+  margin: 0;
+  font-size: var(--fs-sm);
+}
+
+/* --------------------------------------------------------------------------
+   8. Filter (แท็บกรองสินค้า)
+   -------------------------------------------------------------------------- */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-3);
+  margin-bottom: var(--s-4);
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.filter button {
+  padding: var(--s-1) 0 var(--s-2);
+  border: 0;
+  border-bottom: 1px solid transparent;
+  margin-bottom: -1px;
+  background: none;
+  color: var(--c-ink-soft);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.filter button:hover {
+  color: var(--c-ink);
+}
+
+.filter button[aria-pressed="true"],
+.filter button.is-active {
+  color: var(--c-ink);
+  border-bottom-color: var(--c-accent);
+}
+
+/* --------------------------------------------------------------------------
+   9. Product grid / card
+   -------------------------------------------------------------------------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+  gap: var(--s-5) var(--s-4);
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+.product-card__media {
+  overflow: hidden;
+  margin-bottom: var(--s-3);
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--c-line);
+  background: var(--c-cream);
+}
+
+.product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+
+.product-card:hover .product-card__media img {
+  transform: scale(1.03);
+}
+
+.product-card__meta {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--s-1);
+  color: var(--c-ink-soft);
+  font-size: var(--fs-xs);
+}
+
+.product-card__title {
+  margin-bottom: var(--s-1);
+  font-family: var(--font-serif-th);
+  font-size: var(--fs-lg);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.product-card__desc {
+  flex-grow: 1;
+  margin-bottom: var(--s-3);
+  font-size: var(--fs-sm);
+  line-height: 1.8;
+}
+
+.product-card__foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--c-line);
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--c-accent-deep);
+}
+
+.price small {
+  margin-left: 0.25rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  color: var(--c-ink-soft);
+}
+
+.size-tag {
+  padding: 0.15rem 0.7rem;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  color: var(--c-ink-soft);
+  font-size: var(--fs-xs);
+}
+
+/* --------------------------------------------------------------------------
+   10. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  padding-block: var(--s-5);
+  border-top: 1px solid var(--c-line);
+  background: var(--c-cream);
+  color: var(--c-ink-soft);
+  font-size: var(--fs-sm);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.site-footer p {
+  margin: 0;
+  max-width: none;
+}
+
+/* --------------------------------------------------------------------------
+   11. Utilities
+   -------------------------------------------------------------------------- */
+.text-center { text-align: center; }
+.text-accent { color: var(--c-accent-deep); }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   12. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 64rem) {
+  .mood-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --s-5: 3rem;
+    --s-6: 4.5rem;
+    --s-7: 5.5rem;
+  }
+
+  .container {
+    padding-inline: var(--s-2);
+  }
+
+  .site-header__inner {
+    min-height: 4rem;
+  }
+
+  .nav {
+    gap: var(--s-2);
+  }
+
+  .mood-grid {
+    grid-template-columns: 1fr;
+    gap: var(--s-2);
+  }
+
+  .mood-card {
+    padding-right: 0;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-4) var(--s-2);
+  }
+
+  .product-card__desc {
+    font-size: var(--fs-xs);
+  }
+
+  .product-card__foot {
+    flex-direction: column;
+    gap: var(--s-1);
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 26rem) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

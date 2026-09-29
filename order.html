@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>สั่งซื้อสินค้า | Body Scent</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="index.html">Body Scent</a>
+      <ul class="nav">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="product.html">สินค้า</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <h1>สั่งซื้อสินค้า</h1>
+        <p>กรอกข้อมูลด้านล่าง แล้วกดยืนยันสั่งซื้อ</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <form id="orderForm" class="form">
+          <div class="field">
+            <label for="customerName">ชื่อลูกค้า</label>
+            <input class="input" type="text" id="customerName" name="customerName" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="contact">เบอร์โทร / Line</label>
+            <input class="input" type="text" id="contact" name="contact" autocomplete="tel" required>
+          </div>
+
+          <div class="field">
+            <label for="items">รายการสินค้า</label>
+            <input class="input" type="text" id="items" name="items" required>
+          </div>
+
+          <div class="field">
+            <label for="total">จำนวนเงินรวม (บาท)</label>
+            <input class="input" type="number" id="total" name="total" min="0" step="any" required>
+          </div>
+
+          <div class="field">
+            <label for="note">หมายเหตุ</label>
+            <textarea class="textarea" id="note" name="note"></textarea>
+          </div>
+
+          <div class="form__actions">
+            <button class="btn btn--solid btn--block" type="submit">ยืนยันสั่งซื้อ</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <a class="logo" href="index.html">Body Scent</a>
+      <p>&copy; 2026 Body Scent</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
